@@ -1,0 +1,3 @@
+[MyLegacyPass] Doing nothing for initalization
+[MyLegacyPass] Runing on Moduletest.ll
+[MyLegacyPass] Visiting Function: main
