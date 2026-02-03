@@ -1,15 +1,17 @@
 cmake_minimum_required(VERSION 3.13)
-project(MyLegacyPass LANGUAGES CXX)
+project(MyLegacyPass LANGUAGES C CXX)
 
 # ---- C++ config ----
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0 -g -Wall")
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0 -g -Wall -fno-rtti")
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-macro-redefined -Wno-error=macro-redefined")
+
 
 # ---- LLVM config ----
-find_package(LLVM 10.0 REQUIRED CONFIG)
+find_package(LLVM 14 REQUIRED CONFIG)
 
 message(STATUS "Found LLVM ${LLVM_PACKAGE_VERSION}")
 message(STATUS "Using LLVMConfig.cmake in: ${LLVM_DIR}")

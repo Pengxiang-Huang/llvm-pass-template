@@ -18,7 +18,7 @@ SUBDIRS := $(wildcard */)
 all: pass bin 
 
 pass: $(LL) 
-	$(OPT) -load $(PLUGIN) -$(PASS_OPT) $(LL) -o $(OPTBC) > $(OUT) 2>&1
+	$(OPT) -enable-new-pm=0 -load $(PLUGIN) -$(PASS_OPT) $(LL) -o $(OPTBC) > $(OUT) 2>&1
 	@echo "Wrote $(OUT)"
 	cat out.txt
 	llvm-dis $(OPTBC) -o $(OPTLL)
@@ -26,9 +26,10 @@ pass: $(LL)
 bin: $(BIN)
 
 $(BIN): $(CFILE)
-	$(CLANG) -O0 -g \
+	$(CLANG) -O0 -g  -flegacy-pass-manager  -fno-discard-value-names \
 	  -Xclang -load -Xclang $(PLUGIN) \
 	  -o $(BIN) $(CFILE)
+
 
 $(LL): $(CFILE)
 	$(CLANG) -O0 -g -S -emit-llvm -o $(LL) $(CFILE)
