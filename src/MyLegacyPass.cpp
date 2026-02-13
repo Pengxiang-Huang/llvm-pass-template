@@ -43,7 +43,7 @@ char MyLegacyPass::ID = 0;
 
 // register pass to opt
 static RegisterPass<MyLegacyPass>
-    X("my-legacy-pass", "My Legacy ModulePass Template (LLVM 10 legacy PM)",
+    X("my-legacy-pass", "My Legacy ModulePass Template (LLVM 14 legacy PM)",
       /*only looks at CFG=*/false,
       /*is analysis=*/false);
 

@@ -11,7 +11,7 @@ build:
 	-DCMAKE_BUILD_TYPE=Debug 
 
 format:
-	find ./src -regex '.*\.[c|h]pp' -exec  clang-format -style=llvm -i {} +
+	find ./src -type f \( -name '*.cpp' -o -name '*.h' \) -exec clang-format -style=llvm -i {} +
 
 clean:
 	rm -rf install build
